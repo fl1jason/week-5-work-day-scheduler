@@ -30,6 +30,8 @@ function onSaveTask(e) {
     var task = $(e.target).parent().prev().children().val();
 
     localStorage.setItem(hour, task);
+
+    console.log('saved')
 }
 
 function generateTimeslots() {
@@ -44,13 +46,13 @@ function generateTimeslots() {
 
         var hourSlot = $('<div>').addClass('col-sm-2 hour').text(moment(hour, 'h').format('h A'));
         var description = $('<div>').addClass('col-sm-8 row');
-        var textArea = $('<textarea>').addClass('col-md-10 description');
+        var textArea = $('<textarea>').addClass('col-md-12 description');
         textArea.val(savedTask);
 
-        var saveContainer = $('<div>').addClass('col-sm-2');
-        var saveButton = $('<button>').addClass('btn btn-primary saveBtn');
-        saveButton.on('click', onSaveTask);
-        saveButton.text('Save');
+        var saveContainer = $('<div>').addClass('saveBtn d-flex justify-content-center align-items-center col-1');
+        saveContainer.on('click', onSaveTask);
+        var saveButton = $('<i>').addClass('fas fa-save');
+
 
         timeSlot.append(hourSlot);
         timeSlot.append(description);
